@@ -1,0 +1,24 @@
+
+
+Requirements:
+- woordenlijst 2x 30 - EN NL, DE NL
+- hint is 1 letter - 
+- speler meot aantal letters zien
+
+
+
+
+Spelregels:
+- begin 30 punten
+- woord 1x goed +5, 2x goed +2
+- hint -1
+- 0 of minder = gameover
+- loser button -5 (volgende woord)
+
+
+-------------------------------
+
+Endpoints
+- /api/word
+- /api/word/hint
+- /api/word/verify
