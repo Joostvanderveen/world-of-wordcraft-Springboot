@@ -1,0 +1,165 @@
+[
+  {
+  "id": 1,
+  "question": "fiets",
+  "answer": "bicycle"
+},
+{
+  "id": 2,
+"question": "patat",
+"answer": "chips"
+},
+  {
+    "id": 3,
+    "question": "stoplicht",
+    "answer": "traffic light"
+  },
+  {
+    "id": 4,
+    "question": "woordenboek",
+    "answer": "dictionary"
+  },
+  {
+    "id": 5,
+    "question": "kasteel",
+    "answer": "castle"
+  },
+  {
+    "id": 6,
+    "question": "koekje",
+    "answer": "cookie"
+  },
+  {
+    "id": 7,
+    "question": "vuurtoren",
+    "answer": "lighthouse"
+  },
+  {
+    "id": 8,
+    "question": "bos",
+    "answer": "forest"
+  },
+  {
+  "id": 9,
+  "question": "speeltuin",
+  "answer": "playground"
+  },
+  {
+    "id": 10,
+    "question": "lepel",
+    "answer": "spoon"
+  },
+  {
+    "id": 11,
+    "question": "kast",
+    "answer": "closet"
+  },
+  {
+    "id": 12,
+    "question": "bankstel",
+    "answer": "couch"
+  },
+  {
+    "id": 13,
+    "question": "rotonde",
+    "answer": "roundabout"
+  },
+  {
+    "id": 14,
+    "question": "brug",
+    "answer": "bridge"
+  },
+  {
+    "id": 15,
+    "question": "kinderen",
+    "answer": "children"
+  },
+  {
+    "id": 16,
+    "question": "vlinder",
+    "answer": "butterfly"
+  },
+  {
+    "id": 17,
+    "question": "speelgoed",
+    "answer": "toys"
+  },
+  {
+    "id": 18,
+    "question": "toetsenbord",
+    "answer": "keyboard"
+  },
+  {
+    "id": 19,
+    "question": "schildpad",
+    "answer": "turtle"
+  },
+  {
+    "id": 20,
+    "question": "kaas",
+    "answer": "cheese"
+  },
+  {
+    "id": 21,
+    "question": "eiland",
+    "answer": "island"
+  },
+  {
+    "id": 22,
+    "question": "deurbel",
+    "answer": "doorbell"
+  },
+  {
+    "id": 23,
+    "question": "film",
+    "answer": "movie"
+  },
+  {
+    "id": 24,
+    "question": "steelpan",
+    "answer": "saucepan"
+  },
+  {
+    "id": 25,
+    "question": "kippen",
+    "answer": "chickens"
+  },
+  {
+    "id": 26,
+    "question": "kleuter",
+    "answer": "toddler"
+  },
+  {
+    "id": 27,
+    "question": "oma",
+    "answer": "grandmother"
+  },
+  {
+    "id": 28,
+    "question": "kapper",
+    "answer": "barber"
+  },
+  {
+    "id": 29,
+    "tools": "gereedschap",
+    "answer": "barber"
+  },
+  {
+    "id": 30,
+    "tools": "kersentaart",
+    "answer": "cherrypie"
+  }
+]
+
+
+
+
+
+
+
+
+
+
+
+
+
