@@ -5,6 +5,7 @@ import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import com.worldofwordcraft.domain.WordPair;
 import com.worldofwordcraft.repos.WordPairRepository;
+import com.worldofwordcraft.service.WordPairService;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -19,7 +20,7 @@ import java.util.List;
 
 @SpringBootApplication
 @EnableJpaRepositories
-public class WorldOfWordcraftApplication implements CommandLineRunner {
+public class WorldOfWordcraftApplication {
 
     @Autowired
     private Gson gson;
@@ -31,17 +32,17 @@ public class WorldOfWordcraftApplication implements CommandLineRunner {
         SpringApplication.run(WorldOfWordcraftApplication.class, args);
     }
 
-    @Override
-    public void run(String... args) throws Exception {
-        try {
-            String jsonString = getStringFromResource("word-lists/nl-en.json");
-            List<WordPair> wordPairList = gson.fromJson(jsonString, new TypeToken<List<WordPair>>() {
-            }.getType());
-            wordPairRepository.saveAll(wordPairList);
-        } catch (JsonSyntaxException | IOException e) {
-            e.printStackTrace();
-        }
-    }
+//    @Override
+//    public void run(String... args) throws Exception {
+//        try {
+//            String jsonString = getStringFromResource("word-lists/nl-en.json");
+//            List<WordPair> wordPairList = gson.fromJson(jsonString, new TypeToken<List<WordPair>>() {
+//            }.getType());
+//            wordPairRepository.saveAll(wordPairList);
+//        } catch (JsonSyntaxException | IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     public File getFileFromResource (String file){
         return new File(getClass().getClassLoader().getResource(file).getFile());

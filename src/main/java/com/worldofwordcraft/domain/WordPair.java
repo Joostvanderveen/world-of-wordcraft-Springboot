@@ -25,5 +25,6 @@ public class WordPair {
     private String answer;
 
     public WordPair() {
+        //Empty Constructor for Hibernate
     }
 }
