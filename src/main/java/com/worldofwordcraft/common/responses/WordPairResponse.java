@@ -6,11 +6,11 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ResponseJson {
+public class WordPairResponse {
 
     private WordPair wordPair;
 
-    public ResponseJson(WordPair wordPair) {
+    public WordPairResponse(WordPair wordPair) {
         this.wordPair = wordPair;
     }
 }

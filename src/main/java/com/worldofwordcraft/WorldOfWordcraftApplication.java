@@ -3,7 +3,7 @@ package com.worldofwordcraft;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
-import com.worldofwordcraft.common.responses.ResponseListJson;
+import com.worldofwordcraft.common.responses.WordPairListResponse;
 import com.worldofwordcraft.domain.WordPair;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
@@ -21,8 +21,8 @@ import java.util.List;
 @SpringBootApplication
 public class WorldOfWordcraftApplication implements CommandLineRunner {
 
-    public static ResponseListJson dutchAndEnglishList;
-    public static ResponseListJson dutchAndGermanList;
+    public static WordPairListResponse dutchAndEnglishList;
+    public static WordPairListResponse dutchAndGermanList;
 
     @Autowired
     private Gson gson;
@@ -41,11 +41,11 @@ public class WorldOfWordcraftApplication implements CommandLineRunner {
         try {
             log.debug("try to load data from json files nl-en");
             String jsonString = getStringFromResource("word-lists/nl-en.json");
-            dutchAndEnglishList = new ResponseListJson(gson.fromJson(jsonString, new TypeToken<List<WordPair>>() {
+            dutchAndEnglishList = new WordPairListResponse(gson.fromJson(jsonString, new TypeToken<List<WordPair>>() {
             }.getType())) ;
             log.debug("try to load data from json files nl-de");
             jsonString = getStringFromResource("word-lists/nl-de.json");
-            dutchAndGermanList = new ResponseListJson(gson.fromJson(jsonString, new TypeToken<List<WordPair>>() {
+            dutchAndGermanList = new WordPairListResponse(gson.fromJson(jsonString, new TypeToken<List<WordPair>>() {
             }.getType())) ;
         } catch (JsonSyntaxException | IOException e) {
             e.printStackTrace();

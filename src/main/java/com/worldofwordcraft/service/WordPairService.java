@@ -5,18 +5,21 @@ import com.worldofwordcraft.domain.WordPair;
 
 import java.util.List;
 
+/**
+ * Interface for the WordPair Service
+ */
 public interface WordPairService {
 
     /**
-     * Get the count of rows.
+     * Get the count of rows for specified gameType
      *
-     * @param gameType the requested gametype EN or DE
+     * @param gameType the requested gameType EN or DE
      * @return Long number
      */
     Integer getCount(GameType gameType);
 
     /**
-     * Get Random WordPair
+     * Get Random WordPair for specified gameType
      *
      * @param gameType the requested gametype EN or DE
      * @return random Wordpair
@@ -24,7 +27,7 @@ public interface WordPairService {
     WordPair getRandomWordPair(GameType gameType);
 
     /**
-     * Get Random WordPair
+     * Get the whole wordPair list for specified gameType
      *
      * @param gameType the requested gametype EN or DE
      * @return random Wordpair

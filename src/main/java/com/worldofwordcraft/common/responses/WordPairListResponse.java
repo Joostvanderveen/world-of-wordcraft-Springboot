@@ -8,11 +8,11 @@ import java.util.List;
 
 @Getter
 @Setter
-public class ResponseListJson {
+public class WordPairListResponse {
 
     private List<WordPair> wordPairList;
 
-    public ResponseListJson(List<WordPair> wordPairList) {
+    public WordPairListResponse(List<WordPair> wordPairList) {
         this.wordPairList = wordPairList;
     }
 }
