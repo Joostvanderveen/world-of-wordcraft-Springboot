@@ -1,0 +1,30 @@
+{
+  "openapi":"3.0.2",
+  "info": {
+    "title":"world-of-wordCraft-Springboot",
+    "version":"1.0"
+  },
+  "servers": [
+    {"url":"https://api.server.test/v1"}
+  ],
+  "paths": {
+    "api/{gameType}/count" : {
+      "get":{
+        "summary": "get count for given gameType"
+        "consumes": ""
+      }
+    },
+    "api/{gameType}/random" : {
+      "get":{
+        "summary": "get a random word for given gameType"
+      }
+    },
+    "api/{gameType}/list" : {
+      "get":{
+        "summary": "get whole list for given gameType"
+      }
+    }
+
+
+  }
+}
