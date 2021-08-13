@@ -9,6 +9,7 @@ import com.worldofwordcraft.service.WordPairService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +19,7 @@ import javax.validation.constraints.Size;
 import java.util.List;
 
 @Slf4j
-@Validated
+//@Validated
 @RestController
 @RequestMapping("/api")
 public class WordPairController {
@@ -26,17 +27,19 @@ public class WordPairController {
     @Autowired
     private WordPairService wordPairService;
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("{language}/count")
-    public ResponseEntity <Object> getCount(@PathVariable("language")
-                                                        @NotBlank @Size(min=2, max=2,message="too long") Language language) {
+    public ResponseEntity<Object> getCount(@PathVariable("language") Language language) {
         return new ResponseEntity<>(wordPairService.getCount(language), HttpStatus.OK);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("{language}/random")
     public WordPairResponse getRandomWordPair(@PathVariable("language") Language language) {
         return new WordPairResponse(wordPairService.getRandomWordPair(language));
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("{language}/word")
     public ResponseEntity<Object> addNewWordPair(@PathVariable("language") Language language,
                                                  @RequestBody WordPair wordPair) {
@@ -44,14 +47,18 @@ public class WordPairController {
         return new ResponseEntity<>("success", HttpStatus.OK);
     }
 
-    @GetMapping("{language}/list")
+
+    //    @CrossOrigin(origins = "http://127.0.0.1:5500")
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping(value = "{language}/list", produces = MediaType.APPLICATION_JSON_VALUE)
     public WordPairListResponse getWordPairList(@PathVariable("language") Language language) {
         return new WordPairListResponse(wordPairService.getWordPairList(language));
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("{language}/list")
-    public ResponseEntity<Object> addNewWordPairList (@PathVariable("language") Language language,
-                                                      @RequestBody List<WordPair> wordPairList){
+    public ResponseEntity<Object> addNewWordPairList(@PathVariable("language") Language language,
+                                                     @RequestBody List<WordPair> wordPairList) {
         wordPairService.addNewWordPairList(language, wordPairList);
         return new ResponseEntity<>("success", HttpStatus.OK);
     }
