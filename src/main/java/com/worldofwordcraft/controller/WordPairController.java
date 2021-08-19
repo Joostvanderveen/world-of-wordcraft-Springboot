@@ -25,19 +25,19 @@ public class WordPairController {
     @Autowired
     private WordPairService wordPairService;
 
-    @CrossOrigin(origins = "http://localhost:3000")
+//    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("{language}/count")
     public ResponseEntity<Object> getCount(@PathVariable("language") Language language) {
         return new ResponseEntity<>(wordPairService.getCount(language), HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+//    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("{language}/random")
     public WordPairResponse getRandomWordPair(@PathVariable("language") Language language) {
         return new WordPairResponse(wordPairService.getRandomWordPair(language));
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+//    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("{language}/word")
     public ResponseEntity<Object> addNewWordPair(@PathVariable("language") Language language,
                                                  @RequestBody WordPair wordPair) {
@@ -47,13 +47,13 @@ public class WordPairController {
 
 
     //    @CrossOrigin(origins = "http://127.0.0.1:5500")
-    @CrossOrigin(origins = "http://localhost:3000")
+//    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(value = "{language}/list", produces = MediaType.APPLICATION_JSON_VALUE)
     public WordPairListResponse getWordPairList(@PathVariable("language") Language language) {
         return new WordPairListResponse(wordPairService.getWordPairList(language));
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+//    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("{language}/list")
     public ResponseEntity<Object> addNewWordPairList(@PathVariable("language") Language language,
                                                      @RequestBody List<WordPair> wordPairList) {
@@ -61,7 +61,7 @@ public class WordPairController {
         return new ResponseEntity<>("success", HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+//    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("{language}/hint/{amount}")
     public HintResponse getHint(@PathVariable("language") Language language,
                                 @PathVariable("amount") int amount,
