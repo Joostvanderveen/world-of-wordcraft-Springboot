@@ -2,6 +2,7 @@ package com.worldofwordcraft.service;
 
 import com.worldofwordcraft.common.constants.Language;
 import com.worldofwordcraft.common.exceptions.HintException;
+import com.worldofwordcraft.common.exceptions.LanguageNotFoundException;
 import com.worldofwordcraft.domain.WordPair;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public interface WordPairService {
      * @param language the requested language EN or DE
      * @return Long number
      */
-    Integer getCount(Language language);
+    Integer getCount(Language language) throws LanguageNotFoundException;
 
     /**
      * Get Random WordPair for specified language
@@ -25,7 +26,7 @@ public interface WordPairService {
      * @param language the requested language EN or DE
      * @return random Wordpair
      */
-    WordPair getRandomWordPair(Language language);
+    WordPair getRandomWordPair(Language language) throws LanguageNotFoundException;
 
     /**
      * Add a new wordpair in wordlist based on language
@@ -33,7 +34,7 @@ public interface WordPairService {
      * @param language the requested language
      * @param wordPair the word-pair to add to the list
      */
-    void addNewWordPair(Language language, WordPair wordPair);
+    void addNewWordPair(Language language, WordPair wordPair) throws LanguageNotFoundException;
 
     /**
      * Get the whole wordPair list for specified language
@@ -41,7 +42,7 @@ public interface WordPairService {
      * @param language the requested language EN or DE
      * @return random Wordpair
      */
-    List<WordPair> getWordPairList(Language language);
+    List<WordPair> getWordPairList(Language language) throws LanguageNotFoundException;
 
 
     /**
@@ -50,7 +51,7 @@ public interface WordPairService {
      * @param language     the requested language EN or DE
      * @param wordPairList the list that needs to be added
      */
-    void addNewWordPairList(Language language, List<WordPair> wordPairList);
+    void addNewWordPairList(Language language, List<WordPair> wordPairList) throws LanguageNotFoundException;
 
 
     /**
