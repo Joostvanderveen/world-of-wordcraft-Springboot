@@ -18,8 +18,6 @@ public class WordPairServiceImpl implements WordPairService {
 
     private DataService dataService;
 
-    private List<WordPair> wordPairList;
-
     @Inject
     public WordPairServiceImpl(DataService dataService) {
         this.dataService = dataService;
@@ -34,8 +32,7 @@ public class WordPairServiceImpl implements WordPairService {
     @Override
     public WordPair getRandomWordPair(Language language) throws LanguageNotFoundException {
         log.debug("Getting a random WordPair");
-
-        return dataService.getWordPairList(language).get(new Random().nextInt(dataService.getWordPairList(language).size()));
+        return dataService.getWordPairList(language).get(new Random().nextInt(getCount(language)));
 
     }
 
