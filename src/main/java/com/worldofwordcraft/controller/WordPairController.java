@@ -1,9 +1,10 @@
 package com.worldofwordcraft.controller;
 
 import com.worldofwordcraft.common.constants.Language;
-import com.worldofwordcraft.common.exceptions.NotFoundException;
-import com.worldofwordcraft.common.responses.WordPairResponse;
+import com.worldofwordcraft.common.exceptions.HintException;
+import com.worldofwordcraft.common.responses.HintResponse;
 import com.worldofwordcraft.common.responses.WordPairListResponse;
+import com.worldofwordcraft.common.responses.WordPairResponse;
 import com.worldofwordcraft.domain.WordPair;
 import com.worldofwordcraft.service.WordPairService;
 import lombok.extern.slf4j.Slf4j;
@@ -11,11 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 import java.util.List;
 
 @Slf4j
@@ -61,5 +59,15 @@ public class WordPairController {
                                                      @RequestBody List<WordPair> wordPairList) {
         wordPairService.addNewWordPairList(language, wordPairList);
         return new ResponseEntity<>("success", HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PutMapping("{language}/hint/{amount}")
+    public HintResponse getHint(@PathVariable("language") Language language,
+                                @PathVariable("amount") int amount,
+                                @RequestBody WordPair wordPair) throws HintException {
+
+        return new HintResponse(wordPairService.getHint(language, wordPair, amount));
+
     }
 }

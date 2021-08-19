@@ -1,6 +1,7 @@
 package com.worldofwordcraft.service;
 
 import com.worldofwordcraft.common.constants.Language;
+import com.worldofwordcraft.common.exceptions.HintException;
 import com.worldofwordcraft.domain.WordPair;
 
 import java.util.List;
@@ -32,7 +33,7 @@ public interface WordPairService {
      * @param language the requested language
      * @param wordPair the word-pair to add to the list
      */
-    void addNewWordPair (Language language, WordPair wordPair);
+    void addNewWordPair(Language language, WordPair wordPair);
 
     /**
      * Get the whole wordPair list for specified language
@@ -46,8 +47,19 @@ public interface WordPairService {
     /**
      * Add a List of WordPair objects to existing WordPair List based on language
      *
-     * @param language the requested language EN or DE
+     * @param language     the requested language EN or DE
      * @param wordPairList the list that needs to be added
      */
-    void addNewWordPairList (Language language, List<WordPair> wordPairList);
+    void addNewWordPairList(Language language, List<WordPair> wordPairList);
+
+
+    /**
+     * Returns a String with a hint for the answer from WordPair
+     *
+     * @param language the requested language EN or DE
+     * @param wordPair the wordPair for which hint is needed
+     * @param amount   the number of characters as hint
+     * @return
+     */
+    String getHint(Language language, WordPair wordPair, int amount) throws HintException;
 }
