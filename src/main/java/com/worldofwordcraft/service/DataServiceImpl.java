@@ -69,6 +69,7 @@ public class DataServiceImpl implements DataService {
     public List<WordPair> getTest (Language language) throws IOException {
         Type wordListType = new TypeToken<List<WordPair>>() {
         }.getType();
+        log.info("try to load FR wordPair list from json file...");
         String jsonString = getStringFromResource("word-lists/nl-fr.json");
         List<WordPair> dutchAndFrenchWordList = gson.fromJson(jsonString, wordListType);
         wordListMap.put(Language.FR, dutchAndFrenchWordList);
