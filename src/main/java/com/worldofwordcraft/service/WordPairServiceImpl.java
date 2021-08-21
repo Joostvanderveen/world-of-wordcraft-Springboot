@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+import java.io.IOException;
 import java.util.List;
 import java.util.Random;
 
@@ -52,6 +53,13 @@ public class WordPairServiceImpl implements WordPairService {
     public void addNewWordPairList(Language language, List<WordPair> wordPairList) throws LanguageNotFoundException {
         log.debug("adding list to existing wordpair list");
         dataService.getWordPairList(language).addAll(wordPairList);
+    }
+
+    @Override
+    public List<WordPair> getTest (Language language) throws IOException {
+        log.debug("test service called");
+        dataService.getTest(language);
+        return dataService.getTest(language);
     }
 
     @Override

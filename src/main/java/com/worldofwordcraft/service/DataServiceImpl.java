@@ -65,6 +65,16 @@ public class DataServiceImpl implements DataService {
         throw new LanguageNotFoundException("Language not found:" + language.name());
     }
 
+    @Override
+    public List<WordPair> getTest (Language language) throws IOException {
+        Type wordListType = new TypeToken<List<WordPair>>() {
+        }.getType();
+        String jsonString = getStringFromResource("word-lists/nl-fr.json");
+        List<WordPair> dutchAndFrenchWordList = gson.fromJson(jsonString, wordListType);
+        wordListMap.put(Language.FR, dutchAndFrenchWordList);
+        return wordListMap.get(language);
+    }
+
     private static File getFileFromResource(String file) {
         return new File(WorldOfWordcraftApplication.class.getClassLoader().getResource(file).getFile());
     }

@@ -4,6 +4,7 @@ import com.worldofwordcraft.common.constants.Language;
 import com.worldofwordcraft.common.exceptions.LanguageNotFoundException;
 import com.worldofwordcraft.domain.WordPair;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface DataService {
@@ -11,4 +12,6 @@ public interface DataService {
     void loadData();
 
     List<WordPair> getWordPairList(Language language) throws LanguageNotFoundException;
+
+    List<WordPair> getTest (Language language) throws IOException;
 }

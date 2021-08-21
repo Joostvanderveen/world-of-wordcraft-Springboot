@@ -16,6 +16,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @Slf4j
@@ -74,5 +75,11 @@ public class WordPairController {
 
         return new HintResponse(wordPairService.getHint(language, wordPair, amount));
 
+    }
+
+    @GetMapping("{language}/test")
+    public WordPairListResponse testEndpoint (@PathVariable("language") Language language) throws IOException {
+
+        return new WordPairListResponse(wordPairService.getTest(language));
     }
 }

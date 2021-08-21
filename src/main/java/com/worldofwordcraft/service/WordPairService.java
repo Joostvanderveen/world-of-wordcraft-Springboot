@@ -5,6 +5,7 @@ import com.worldofwordcraft.common.exceptions.HintException;
 import com.worldofwordcraft.common.exceptions.LanguageNotFoundException;
 import com.worldofwordcraft.domain.WordPair;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -63,4 +64,11 @@ public interface WordPairService {
      * @return
      */
     String getHint(Language language, WordPair wordPair, int amount) throws HintException;
+
+    /**
+     * Test if Heroku works without post construct data
+     * @param language
+     * @return
+     */
+    List<WordPair> getTest(Language language) throws IOException;
 }
