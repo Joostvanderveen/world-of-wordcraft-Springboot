@@ -5,6 +5,7 @@ import com.worldofwordcraft.common.exceptions.HintException;
 import com.worldofwordcraft.common.exceptions.LanguageNotFoundException;
 import com.worldofwordcraft.domain.WordPair;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -17,6 +18,7 @@ import java.util.Random;
 @Service
 public class WordPairServiceImpl implements WordPairService {
 
+    @Autowired
     private DataService dataService;
 
     @Inject
