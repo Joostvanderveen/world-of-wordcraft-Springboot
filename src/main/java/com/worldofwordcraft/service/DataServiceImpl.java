@@ -70,7 +70,7 @@ public class DataServiceImpl implements DataService {
         Type wordListType = new TypeToken<List<WordPair>>() {
         }.getType();
         log.info("try to load FR wordPair list from json file...");
-        String jsonString = getStringFromResource("word-lists/nl-fr.json");
+        String jsonString = getStringFromResource("nl-fr.json");
         List<WordPair> dutchAndFrenchWordList = gson.fromJson(jsonString, wordListType);
         wordListMap.put(Language.FR, dutchAndFrenchWordList);
         return wordListMap.get(language);
