@@ -79,7 +79,7 @@ public class WordPairController {
 
     @GetMapping("{language}/test")
     public WordPairListResponse testEndpoint (@PathVariable("language") Language language) throws IOException {
-
+        //comment
         return new WordPairListResponse(wordPairService.getTest(language));
     }
 }
