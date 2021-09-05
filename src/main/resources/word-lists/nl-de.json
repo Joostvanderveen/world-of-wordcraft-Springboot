@@ -112,11 +112,11 @@
     "answer": "haus"
   },
   {
-    "tools": "gratis",
+    "question": "gratis",
     "answer": "kostenlos"
   },
   {
-    "tools": "woordenboek",
+    "question": "woordenboek",
     "answer": "wortenbuch"
   }
 ]

@@ -8,14 +8,15 @@ import com.worldofwordcraft.common.constants.Language;
 import com.worldofwordcraft.common.exceptions.LanguageNotFoundException;
 import com.worldofwordcraft.domain.WordPair;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.reflect.Type;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -84,9 +85,4 @@ public class DataServiceImpl implements DataService {
             return reader.lines().collect(Collectors.joining(System.lineSeparator()));
         }
     }
-
-//    private static String getStringFromResource(String resource) throws IOException {
-//        File file = getFileFromResource(resource);
-//        return FileUtils.readFileToString(file, StandardCharsets.UTF_8);
-//    }
 }
