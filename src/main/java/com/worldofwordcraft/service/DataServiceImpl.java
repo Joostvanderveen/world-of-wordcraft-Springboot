@@ -42,7 +42,7 @@ public class DataServiceImpl implements DataService {
 
             log.info("loading data......");
             log.debug("try to load data from json files nl-en");
-            String jsonString = getStringFromResource("word-lists/nl-en.json");
+            String jsonString = getStringFromResource("nl-en.json");
             List<WordPair> dutchAndEnglishWordList = gson.fromJson(jsonString, wordListType);
             wordListMap.put(Language.EN, dutchAndEnglishWordList);
 
