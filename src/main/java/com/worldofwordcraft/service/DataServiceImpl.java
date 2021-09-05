@@ -13,13 +13,13 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -42,12 +42,12 @@ public class DataServiceImpl implements DataService {
 
             log.info("loading data......");
             log.debug("try to load data from json files nl-en");
-            String jsonString = getStringFromResource("nl-en.json");
+            String jsonString = getFileFromResource("nl-en.json");
             List<WordPair> dutchAndEnglishWordList = gson.fromJson(jsonString, wordListType);
             wordListMap.put(Language.EN, dutchAndEnglishWordList);
 
             log.debug("try to load data from json files nl-de");
-            jsonString = getStringFromResource("word-lists/nl-de.json");
+            jsonString = getFileFromResource("word-lists/nl-de.json");
             List<WordPair> germanAndEnglishWordList = gson.fromJson(jsonString, wordListType);
             wordListMap.put(Language.DE, germanAndEnglishWordList);
         } catch (JsonSyntaxException | IOException e) {
@@ -70,18 +70,23 @@ public class DataServiceImpl implements DataService {
         Type wordListType = new TypeToken<List<WordPair>>() {
         }.getType();
         log.info("try to load FR wordPair list from json file...");
-        String jsonString = getStringFromResource("word-lists\\nl-fr.json");
+        String jsonString = getFileFromResource("word-lists\\nl-fr.json");
         List<WordPair> dutchAndFrenchWordList = gson.fromJson(jsonString, wordListType);
         wordListMap.put(Language.FR, dutchAndFrenchWordList);
         return wordListMap.get(language);
     }
 
-    private static File getFileFromResource(String file) {
-        return new File(WorldOfWordcraftApplication.class.getClassLoader().getResource(file).getFile());
+    private static String getFileFromResource(String file) throws IOException {
+
+
+        try (InputStream inputStream = WorldOfWordcraftApplication.class.getClassLoader().getResourceAsStream(file);
+             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
+            return reader.lines().collect(Collectors.joining(System.lineSeparator()));
+        }
     }
 
-    private static String getStringFromResource(String resource) throws IOException {
-        File file = getFileFromResource(resource);
-        return FileUtils.readFileToString(file, StandardCharsets.UTF_8);
-    }
+//    private static String getStringFromResource(String resource) throws IOException {
+//        File file = getFileFromResource(resource);
+//        return FileUtils.readFileToString(file, StandardCharsets.UTF_8);
+//    }
 }
