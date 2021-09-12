@@ -30,19 +30,19 @@ public class WordPairController {
     @Autowired
     private DataService dataService;
 
-    //    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "*")
     @GetMapping("{language}/count")
     public ResponseEntity<Object> getCount(@PathVariable("language") Language language) throws LanguageNotFoundException {
         return new ResponseEntity<>(wordPairService.getCount(language), HttpStatus.OK);
     }
 
-    //    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "*")
     @GetMapping("{language}/random")
     public WordPairResponse getRandomWordPair(@PathVariable("language") Language language) throws LanguageNotFoundException {
         return new WordPairResponse(wordPairService.getRandomWordPair(language));
     }
 
-    //    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "*")
     @PutMapping("{language}/word")
     public ResponseEntity<Object> addNewWordPair(@PathVariable("language") Language language,
                                                  @RequestBody WordPair wordPair) throws LanguageNotFoundException {
@@ -51,15 +51,14 @@ public class WordPairController {
     }
 
 
-    //    @CrossOrigin(origins = "http://127.0.0.1:5500")
-//    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "*")
     @GetMapping(value = "{language}/list", produces = MediaType.APPLICATION_JSON_VALUE)
     public WordPairListResponse getWordPairList(@PathVariable("language") Language language) throws LanguageNotFoundException {
         dataService.loadData();
         return new WordPairListResponse(wordPairService.getWordPairList(language));
     }
 
-    //    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "*")
     @PutMapping("{language}/list")
     public ResponseEntity<Object> addNewWordPairList(@PathVariable("language") Language language,
                                                      @RequestBody List<WordPair> wordPairList) throws LanguageNotFoundException {
@@ -67,7 +66,7 @@ public class WordPairController {
         return new ResponseEntity<>("success", HttpStatus.OK);
     }
 
-    //    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "*")
     @PutMapping("{language}/hint/{amount}")
     public HintResponse getHint(@PathVariable("language") Language language,
                                 @PathVariable("amount") int amount,
@@ -77,6 +76,7 @@ public class WordPairController {
 
     }
 
+    @CrossOrigin(origins = "*")
     @GetMapping("{language}/test")
     public WordPairListResponse testEndpoint (@PathVariable("language") Language language) throws IOException {
         //comment
