@@ -5,65 +5,97 @@ import com.worldofwordcraft.common.exceptions.HintException;
 import com.worldofwordcraft.common.exceptions.LanguageNotFoundException;
 import com.worldofwordcraft.domain.WordPair;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
-import java.io.IOException;
 import java.util.List;
 import java.util.Random;
 
-
+/**
+ * {@inheritDoc}
+ */
 @Slf4j
 @Service
 public class WordPairServiceImpl implements WordPairService {
 
-    @Autowired
-    private DataService dataService;
+    private final DataService dataService;
 
+    /**
+     * public constructor with injected dataService
+     *
+     * @param dataService dataService
+     */
     @Inject
     public WordPairServiceImpl(DataService dataService) {
         this.dataService = dataService;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Integer getCount(Language language) throws LanguageNotFoundException {
-        log.debug("Getting size of WordPair list");
+        log.info("Getting size of WordPair list");
         return dataService.getWordPairList(language).size();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public WordPair getRandomWordPair(Language language) throws LanguageNotFoundException {
-        log.debug("Getting a random WordPair");
+        log.info("Getting a random WordPair");
         return dataService.getWordPairList(language).get(new Random().nextInt(getCount(language)));
-
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void addNewWordPair(Language language, WordPair wordPair) throws LanguageNotFoundException {
-        log.debug("Setting new wordpair into wordlist");
+        log.info("Setting new wordpair into wordlist");
         dataService.getWordPairList(language).add(wordPair);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void removeWordPair(Language language, WordPair wordPair) throws LanguageNotFoundException {
+        log.info("Trying to remove wordPair from list");
+        dataService.getWordPairList(language).removeIf(wp -> wordPair.getQuestion().equalsIgnoreCase(wp.getQuestion()));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<WordPair> getWordPairList(Language language) throws LanguageNotFoundException {
-        log.debug("Getting a wordPairList");
+        log.info("Getting a wordPairList");
         return dataService.getWordPairList(language);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void addNewWordPairList(Language language, List<WordPair> wordPairList) throws LanguageNotFoundException {
-        log.debug("adding list to existing wordpair list");
+        log.info("adding list to existing wordpair list");
         dataService.getWordPairList(language).addAll(wordPairList);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public List<WordPair> getTest (Language language) throws IOException {
-        log.debug("test service called");
-        dataService.getTest(language);
-        return dataService.getTest(language);
+    public void reloadData() {
+        log.info("reload data");
+        dataService.loadData();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getHint(Language language, WordPair wordPair, int amount) throws HintException {
 
@@ -83,6 +115,4 @@ public class WordPairServiceImpl implements WordPairService {
 
         return hint.toString();
     }
-
-
 }

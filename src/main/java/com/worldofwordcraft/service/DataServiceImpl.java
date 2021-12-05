@@ -22,6 +22,9 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
+/**
+ * {@inheritDoc}
+ */
 @Slf4j
 @Service
 public class DataServiceImpl implements DataService {
@@ -30,11 +33,19 @@ public class DataServiceImpl implements DataService {
 
     private final Gson gson;
 
+    /**
+     * public constructor with injected Gson object
+     *
+     * @param gson Gson object for deserialization
+     */
     @Inject
     public DataServiceImpl(Gson gson) {
         this.gson = gson;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @PostConstruct
     public void loadData() {
         try {
@@ -49,37 +60,31 @@ public class DataServiceImpl implements DataService {
 
             log.debug("try to load data from json files nl-de");
             jsonString = getFileFromResource("word-lists/nl-de.json");
-            List<WordPair> germanAndEnglishWordList = gson.fromJson(jsonString, wordListType);
-            wordListMap.put(Language.DE, germanAndEnglishWordList);
+            List<WordPair> dutchAndGermanWordList = gson.fromJson(jsonString, wordListType);
+            wordListMap.put(Language.DE, dutchAndGermanWordList);
+
+            log.debug("try to load data from json files nl-fr");
+            jsonString = getFileFromResource("word-lists/nl-fr.json");
+            List<WordPair> dutchAndFrenchWordList = gson.fromJson(jsonString, wordListType);
+            wordListMap.put(Language.FR, dutchAndFrenchWordList);
         } catch (JsonSyntaxException | IOException e) {
             e.printStackTrace();
         }
     }
 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<WordPair> getWordPairList(Language language) throws LanguageNotFoundException {
         if (wordListMap.containsKey(language)) {
             return wordListMap.get(language);
         }
 
-        throw new LanguageNotFoundException("Language not found:" + language.name());
-    }
-
-    @Override
-    public List<WordPair> getTest (Language language) throws IOException {
-        Type wordListType = new TypeToken<List<WordPair>>() {
-        }.getType();
-        log.info("try to load FR wordPair list from json file...");
-        String jsonString = getFileFromResource("word-lists\\nl-fr.json");
-        List<WordPair> dutchAndFrenchWordList = gson.fromJson(jsonString, wordListType);
-        wordListMap.put(Language.FR, dutchAndFrenchWordList);
-        return wordListMap.get(language);
+        throw new LanguageNotFoundException("Language not found: " + language.name());
     }
 
     private static String getFileFromResource(String file) throws IOException {
-
-
         try (InputStream inputStream = WorldOfWordcraftApplication.class.getClassLoader().getResourceAsStream(file);
              BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
             return reader.lines().collect(Collectors.joining(System.lineSeparator()));

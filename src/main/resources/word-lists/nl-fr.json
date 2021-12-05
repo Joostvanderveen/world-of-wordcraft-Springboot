@@ -2,5 +2,17 @@
   {
     "question": "ja",
     "answer": "oui"
+  },
+  {
+    "question": "stokbrood",
+    "answer": "baguette"
+  },
+  {
+    "question": "auto",
+    "answer": "voiture"
+  },
+  {
+    "question": "boek",
+    "answer": "livre"
   }
-  ]
+]

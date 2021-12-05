@@ -5,7 +5,6 @@ import com.worldofwordcraft.common.exceptions.HintException;
 import com.worldofwordcraft.common.exceptions.LanguageNotFoundException;
 import com.worldofwordcraft.domain.WordPair;
 
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -38,6 +37,15 @@ public interface WordPairService {
     void addNewWordPair(Language language, WordPair wordPair) throws LanguageNotFoundException;
 
     /**
+     * Remove existing wordPair from list based on language
+     *
+     * @param language the requested language
+     * @param wordPair the word-pair to remove from the list
+     * @throws LanguageNotFoundException Language not found exception for when lanaguage is not found
+     */
+    void removeWordPair(Language language, WordPair wordPair) throws LanguageNotFoundException;
+
+    /**
      * Get the whole wordPair list for specified language
      *
      * @param language the requested language EN or DE
@@ -66,9 +74,7 @@ public interface WordPairService {
     String getHint(Language language, WordPair wordPair, int amount) throws HintException;
 
     /**
-     * Test if Heroku works without post construct data
-     * @param language
-     * @return
+     * Method just to reset data
      */
-    List<WordPair> getTest(Language language) throws IOException;
+    void reloadData();
 }
