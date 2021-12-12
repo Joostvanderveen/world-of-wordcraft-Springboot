@@ -35,7 +35,7 @@ public class WordPairServiceImpl implements WordPairService {
      */
     @Override
     public Integer getCount(Language language) throws LanguageNotFoundException {
-        log.info("Getting size of WordPair list");
+        log.info("Getting size of WordPair list {}", language);
         return dataService.getWordPairList(language).size();
     }
 
@@ -44,7 +44,7 @@ public class WordPairServiceImpl implements WordPairService {
      */
     @Override
     public WordPair getRandomWordPair(Language language) throws LanguageNotFoundException {
-        log.info("Getting a random WordPair");
+        log.info("Getting a random WordPair from WordPairList {}", language);
         return dataService.getWordPairList(language).get(new Random().nextInt(getCount(language)));
     }
 
@@ -53,7 +53,7 @@ public class WordPairServiceImpl implements WordPairService {
      */
     @Override
     public void addNewWordPair(Language language, WordPair wordPair) throws LanguageNotFoundException {
-        log.info("Setting new wordpair into wordlist");
+        log.info("Setting new wordPair {} into wordlist {}", wordPair.getQuestion(), language);
         dataService.getWordPairList(language).add(wordPair);
     }
 
@@ -62,7 +62,7 @@ public class WordPairServiceImpl implements WordPairService {
      */
     @Override
     public void removeWordPair(Language language, WordPair wordPair) throws LanguageNotFoundException {
-        log.info("Trying to remove wordPair from list");
+        log.info("Trying to remove wordPair {} from list {}", wordPair.getQuestion(), language);
         dataService.getWordPairList(language).removeIf(wp -> wordPair.getQuestion().equalsIgnoreCase(wp.getQuestion()));
     }
 
@@ -71,7 +71,7 @@ public class WordPairServiceImpl implements WordPairService {
      */
     @Override
     public List<WordPair> getWordPairList(Language language) throws LanguageNotFoundException {
-        log.info("Getting a wordPairList");
+        log.info("Getting wordPairList {}", language);
         return dataService.getWordPairList(language);
     }
 
@@ -80,7 +80,7 @@ public class WordPairServiceImpl implements WordPairService {
      */
     @Override
     public void addNewWordPairList(Language language, List<WordPair> wordPairList) throws LanguageNotFoundException {
-        log.info("adding list to existing wordpair list");
+        log.info("adding list to existing wordPair list {}", language);
         dataService.getWordPairList(language).addAll(wordPairList);
     }
 

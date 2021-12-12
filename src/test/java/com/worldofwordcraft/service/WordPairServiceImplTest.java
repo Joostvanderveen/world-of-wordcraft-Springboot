@@ -15,7 +15,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
@@ -43,21 +47,54 @@ class WordPairServiceImplTest {
         when(dataService.getWordPairList(any(Language.class)))
                 .thenThrow(new LanguageNotFoundException("Language not found: "));
 
-        Integer size = wordPairService.getCount(Language.EN);
-
-        assertEquals(4, size);
+        Exception exception = assertThrows(
+                LanguageNotFoundException.class, () -> wordPairService.getCount(Language.EN));
+        assertEquals("Language not found: ", exception.getMessage());
     }
 
     @Test
-    void getRandomWordPair() {
+    void testGetRandomWordPair_OK() throws LanguageNotFoundException {
+        when(dataService.getWordPairList(any(Language.class)))
+                .thenReturn(mockWordPairList());
+
+        WordPair result = wordPairService.getRandomWordPair(Language.EN);
+
+        assertNotNull(result);
+        assertNotNull(result.getAnswer());
+        assertNotNull(result.getAnswer());
     }
 
     @Test
-    void addNewWordPair() {
+    void testAddNewWordPair_OK() throws LanguageNotFoundException {
+
+        when(dataService.getWordPairList(any(Language.class)))
+                .thenReturn(mockWordPairList());
+
+        WordPair wp = new WordPair("new", "new");
+
+        wordPairService.addNewWordPair(Language.EN, wp);
+
+        verify(dataService, times(1)).getWordPairList(Language.EN);
     }
 
     @Test
-    void getWordPairList() {
+    void testGetWordPairList_OK() throws LanguageNotFoundException {
+        when(dataService.getWordPairList(any(Language.class)))
+                .thenReturn(mockWordPairList());
+
+        List<WordPair> result = wordPairService.getWordPairList(Language.EN);
+
+        assertEquals(4, result.size());
+    }
+
+    @Test
+    void testGetWordPairList_language_unknown() throws LanguageNotFoundException {
+        when(dataService.getWordPairList(any(Language.class)))
+                .thenThrow(new LanguageNotFoundException("Language not found: "));
+
+        Exception exception = assertThrows(
+                LanguageNotFoundException.class, () -> wordPairService.getWordPairList(Language.EN));
+        assertEquals("Language not found: ", exception.getMessage());
     }
 
     @Test
@@ -69,12 +106,12 @@ class WordPairServiceImplTest {
     }
 
 
-    private List<WordPair> mockWordPairList() throws IOException {
+    private List<WordPair> mockWordPairList() {
         List<WordPair> mockList = new ArrayList<>();
-        WordPair wp = new WordPair("a","a");
-        WordPair wp1 = new WordPair("b","a");
-        WordPair wp2 = new WordPair("c","a");
-        WordPair wp3 = new WordPair("d","a");
+        WordPair wp = new WordPair("a", "a");
+        WordPair wp1 = new WordPair("b", "a");
+        WordPair wp2 = new WordPair("c", "a");
+        WordPair wp3 = new WordPair("d", "a");
 
         mockList.add(wp);
         mockList.add(wp1);
