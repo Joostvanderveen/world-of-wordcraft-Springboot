@@ -25,4 +25,13 @@ public interface DataService {
      */
     List<WordPair> getWordPairList(Language language) throws LanguageNotFoundException;
 
+    /**
+     * This method will save the given wordPairList and return it
+     *
+     * @param language the request language
+     * @return The list of WordPairs for the language
+     * @throws LanguageNotFoundException exception when language not found
+     */
+    List<WordPair> setWordPairList(Language language, List<WordPair> wordPairList) throws LanguageNotFoundException;
+
 }

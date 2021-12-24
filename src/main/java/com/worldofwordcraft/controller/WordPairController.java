@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -90,6 +91,15 @@ public class WordPairController {
             @RequestParam(name = "language") Language language,
             @RequestBody List<WordPair> wordPairList) throws LanguageNotFoundException {
         wordPairService.addNewWordPairList(language, wordPairList);
+        return new ResponseEntity<>("success", HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "*")
+    @PostMapping("/list")
+    public ResponseEntity<Object> saveWordPairList(
+            @RequestParam(name = "language") Language language,
+            @RequestBody List<WordPair> wordPairList) throws LanguageNotFoundException {
+        wordPairService.saveWordPairList(language, wordPairList);
         return new ResponseEntity<>("success", HttpStatus.OK);
     }
 

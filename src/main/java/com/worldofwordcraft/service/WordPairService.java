@@ -15,7 +15,7 @@ public interface WordPairService {
     /**
      * Get the count of rows for specified language
      *
-     * @param language the requested language EN or DE
+     * @param language the requested language
      * @return Long number
      */
     Integer getCount(Language language) throws LanguageNotFoundException;
@@ -23,7 +23,7 @@ public interface WordPairService {
     /**
      * Get Random WordPair for specified language
      *
-     * @param language the requested language EN or DE
+     * @param language the requested language
      * @return random Wordpair
      */
     WordPair getRandomWordPair(Language language) throws LanguageNotFoundException;
@@ -48,7 +48,7 @@ public interface WordPairService {
     /**
      * Get the whole wordPair list for specified language
      *
-     * @param language the requested language EN or DE
+     * @param language the requested language
      * @return random Wordpair
      */
     List<WordPair> getWordPairList(Language language) throws LanguageNotFoundException;
@@ -57,16 +57,25 @@ public interface WordPairService {
     /**
      * Add a List of WordPair objects to existing WordPair List based on language
      *
-     * @param language     the requested language EN or DE
+     * @param language     the requested language
      * @param wordPairList the list that needs to be added
      */
     void addNewWordPairList(Language language, List<WordPair> wordPairList) throws LanguageNotFoundException;
 
 
     /**
+     * Save a wordPairList
+     *
+     * @param language     the requested language
+     * @param wordPairList the list that needs to be saved
+     * @throws LanguageNotFoundException when the language is not found
+     */
+    void saveWordPairList(Language language, List<WordPair> wordPairList) throws LanguageNotFoundException;
+
+    /**
      * Returns a String with a hint for the answer from WordPair
      *
-     * @param language the requested language EN or DE
+     * @param language the requested language
      * @param wordPair the wordPair for which hint is needed
      * @param amount   the number of characters as hint
      * @return

@@ -84,6 +84,19 @@ public class DataServiceImpl implements DataService {
         throw new LanguageNotFoundException("Language not found: " + language.name());
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<WordPair> setWordPairList(Language language, List<WordPair> wordPairList) throws LanguageNotFoundException {
+        if (wordListMap.containsKey(language)) {
+            wordListMap.put(language, wordPairList);
+            return wordListMap.get(language);
+        }
+        throw new LanguageNotFoundException("Language not found: " + language.name());
+    }
+
+
     private static String getFileFromResource(String file) throws IOException {
         try (InputStream inputStream = WorldOfWordcraftApplication.class.getClassLoader().getResourceAsStream(file);
              BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {

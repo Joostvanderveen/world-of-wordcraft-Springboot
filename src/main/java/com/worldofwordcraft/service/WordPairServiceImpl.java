@@ -88,6 +88,15 @@ public class WordPairServiceImpl implements WordPairService {
      * {@inheritDoc}
      */
     @Override
+    public void saveWordPairList(Language language, List<WordPair> wordPairList) throws LanguageNotFoundException {
+        log.info("adding list to existing wordPair list {}", language);
+        dataService.setWordPairList(language, wordPairList);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void reloadData() {
         log.info("reload data");
         dataService.loadData();
