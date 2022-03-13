@@ -90,7 +90,7 @@ public class WordPairController {
     public ResponseEntity<Object> addNewWordPairList(
             @RequestParam(name = "language") Language language,
             @RequestBody List<WordPair> wordPairList) throws LanguageNotFoundException {
-        wordPairService.addNewWordPairList(language, wordPairList);
+        wordPairService.saveWordPairList(language, wordPairList);
         return new ResponseEntity<>("success", HttpStatus.OK);
     }
 

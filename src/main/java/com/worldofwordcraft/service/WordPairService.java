@@ -69,8 +69,9 @@ public interface WordPairService {
      * @param language     the requested language
      * @param wordPairList the list that needs to be saved
      * @throws LanguageNotFoundException when the language is not found
+     * @return updated list
      */
-    void saveWordPairList(Language language, List<WordPair> wordPairList) throws LanguageNotFoundException;
+    List<WordPair> saveWordPairList(Language language, List<WordPair> wordPairList) throws LanguageNotFoundException;
 
     /**
      * Returns a String with a hint for the answer from WordPair
