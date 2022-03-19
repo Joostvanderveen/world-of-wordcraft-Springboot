@@ -5,10 +5,10 @@ import com.worldofwordcraft.common.exceptions.HintException;
 import com.worldofwordcraft.common.exceptions.LanguageNotFoundException;
 import com.worldofwordcraft.domain.WordPair;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -53,26 +53,6 @@ public class WordPairServiceImpl implements WordPairService {
      * {@inheritDoc}
      */
     @Override
-    public void addNewWordPair(Language language, WordPair wordPair) throws LanguageNotFoundException {
-        log.info("Setting new wordPair {} into wordlist {}", wordPair.getQuestion(), language);
-        List<WordPair> list = new ArrayList<>(dataService.getWordPairList(language));
-        list.add(wordPair);
-        dataService.setWordPairList(language,list);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void removeWordPair(Language language, WordPair wordPair) throws LanguageNotFoundException {
-        log.info("Trying to remove wordPair {} from list {}", wordPair.getQuestion(), language);
-        dataService.getWordPairList(language).removeIf(wp -> wordPair.getQuestion().equalsIgnoreCase(wp.getQuestion()));
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public List<WordPair> getWordPairList(Language language) throws LanguageNotFoundException {
         log.info("Getting wordPairList {}", language);
         return dataService.getWordPairList(language);
@@ -82,27 +62,9 @@ public class WordPairServiceImpl implements WordPairService {
      * {@inheritDoc}
      */
     @Override
-    public void addNewWordPairList(Language language, List<WordPair> wordPairList) throws LanguageNotFoundException {
-        log.info("adding list to existing wordPair list {}", language);
-        dataService.getWordPairList(language).addAll(wordPairList);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public List<WordPair> saveWordPairList(Language language, List<WordPair> wordPairList) throws LanguageNotFoundException {
-        log.info("adding list to existing wordPair list {}", language);
+        log.info("saving list: {}", language);
         return dataService.setWordPairList(language, wordPairList);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void reloadData() {
-        log.info("reload data");
-        dataService.loadData();
     }
 
     /**

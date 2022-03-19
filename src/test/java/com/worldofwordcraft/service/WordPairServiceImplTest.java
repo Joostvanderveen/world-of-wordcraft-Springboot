@@ -18,8 +18,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
@@ -62,19 +60,6 @@ class WordPairServiceImplTest {
         assertNotNull(result);
         assertNotNull(result.getAnswer());
         assertNotNull(result.getAnswer());
-    }
-
-    @Test
-    void testAddNewWordPair_OK() throws LanguageNotFoundException {
-
-        when(dataService.getWordPairList(any(Language.class)))
-                .thenReturn(mockWordPairList());
-
-        WordPair wp = new WordPair("new", "new");
-
-        wordPairService.addNewWordPair(Language.EN, wp);
-
-        verify(dataService, times(1)).getWordPairList(Language.EN);
     }
 
     @Test

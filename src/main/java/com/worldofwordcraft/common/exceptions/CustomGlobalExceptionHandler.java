@@ -17,5 +17,10 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
         response.sendError(HttpStatus.BAD_REQUEST.value());
     }
 
+    @ExceptionHandler(HintException.class)
+    public void hintException(HttpServletResponse response) throws IOException{
+        response.sendError(HttpStatus.BAD_REQUEST.value());
+    }
+
 
 }

@@ -46,19 +46,20 @@ public class DataServiceImpl implements DataService {
 
             log.info("loading data......");
             log.debug("try to load data from json files nl-en");
-//            String jsonString = getFileFromResource("nl-en.json");
             List<WordPair> dutchAndEnglishWordList = getFileFromResource("nl-en.json");
             wordListMap.put(Language.EN, dutchAndEnglishWordList);
 
             log.debug("try to load data from json files nl-de");
-//            jsonString = getFileFromResource("nl-de.json");
             List<WordPair> dutchAndGermanWordList = getFileFromResource("nl-de.json");
             wordListMap.put(Language.DE, dutchAndGermanWordList);
 
             log.debug("try to load data from json files nl-fr");
-//            jsonString = getFileFromResource("nl-fr.json");
             List<WordPair> dutchAndFrenchWordList = getFileFromResource("nl-fr.json");
             wordListMap.put(Language.FR, dutchAndFrenchWordList);
+
+            log.debug("try to load data from json files nl-fr");
+            List<WordPair> dutchAndBahasaWordList = getFileFromResource("nl-ba.json");
+            wordListMap.put(Language.BA, dutchAndBahasaWordList);
         } catch (JsonSyntaxException | IOException e) {
             e.printStackTrace();
         }

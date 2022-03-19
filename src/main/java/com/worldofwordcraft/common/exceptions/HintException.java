@@ -11,5 +11,6 @@ public class HintException extends Exception{
 
     public HintException(String message) {
         this.message = message;
+
     }
 }
