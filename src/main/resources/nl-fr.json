@@ -14,5 +14,13 @@
   {
     "question": "boek",
     "answer": "livre"
+  },
+  {
+    "question": "computer",
+    "answer": "ordinateur"
+  },
+  {
+    "question": "hond",
+    "answer": "chien"
   }
 ]

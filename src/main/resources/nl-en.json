@@ -1,12 +1,12 @@
 [
   {
-  "question": "fiets",
-  "answer": "bicycle"
-},
-{
-"question": "patat",
-"answer": "chips"
-},
+    "question": "fiets",
+    "answer": "bicycle"
+  },
+  {
+    "question": "patat",
+    "answer": "chips"
+  },
   {
     "question": "stoplicht",
     "answer": "traffic light"
@@ -32,16 +32,12 @@
     "answer": "forest"
   },
   {
-  "question": "speeltuin",
-  "answer": "playground"
+    "question": "speeltuin",
+    "answer": "playground"
   },
   {
     "question": "lepel",
     "answer": "spoon"
-  },
-  {
-    "question": "kast",
-    "answer": "closet"
   },
   {
     "question": "bankstel",
@@ -118,18 +114,9 @@
   {
     "question": "kersentaart",
     "answer": "cherrypie"
+  },
+  {
+    "question": "deur",
+    "answer": "door"
   }
 ]
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -10,7 +10,7 @@ public class HintException extends Exception{
     private String message;
 
     public HintException(String message) {
-        this.message = message;
+        super(message);
 
     }
 }
